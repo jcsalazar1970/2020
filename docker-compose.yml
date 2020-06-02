@@ -3,13 +3,13 @@ db:
   environment:
     MYSQL_ROOT_PASSWORD: Malamen2019
     MYSQL_DATABASE: covid_users
-    MYSQL_USER: root
+    MYSQL_USER: uned
     MYSQL_PASSWORD: Malamen2019
   ports:
     - "3306:3306"
   volumes:
   # - ./db/mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql:ro
-  - ./db:/docker-entrypoint-initdb.d
+  - ./db:/docker-entrypoint-initdb.d/mysql-init.sql:ro
 
 web:
   image: tomcat:latest
@@ -17,12 +17,12 @@ web:
   restart: on-failure
   environment:
     JDBC_URL: jdbc:mysql://db/covid_users
-    MYSQL_USER: root
+    MYSQL_USER: uned
     JDBC_PASS: Malamen2019
   ports:
    - "8080:8080"
   volumes:
-   #- ./target:/usr/local/tomcat/webapps
-   - ./tomcat/webapps:/usr/local/tomcat/webapps
+   - ./target:/usr/local/tomcat/webapps
+   #- ./tomcat/webapps:/usr/local/tomcat/webapps
   links:
     - db
