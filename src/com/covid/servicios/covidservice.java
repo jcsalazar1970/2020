@@ -10,7 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 public class covidservice implements IcovidService{
-
+   
+	//sss
 	@Override
     public List<covid> findCovits(int currentPage, int recordsPerPage)  {
 
